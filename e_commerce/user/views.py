@@ -6,6 +6,7 @@ from .serializers import UserSerializer
 
 from django.contrib.auth import authenticate, login, logout
 
+# Create your views here.
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
@@ -38,4 +39,4 @@ class SignupView(APIView):
             return Response(serializer.errors, status=400)
 
 
-# Create your views here.
+
