@@ -5,14 +5,12 @@ from rest_framework import status
 from .serializers import ContactSerializer
 from blog.serializers import BlogSerializer
 from blog.models import Blog
-from django.views.generic import TemplateView
 
 # Create your views here.
 
 
 
 class IndexView(APIView):
-    
     
     def get(self, request):
         blogs = Blog.objects.filter(status=Blog.ACTIVE).order_by('-created_at')[:3]
