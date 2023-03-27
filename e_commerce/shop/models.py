@@ -20,6 +20,13 @@ class Category(models.Model):
     def get_absolute_url(self):
         return '/%s/' % self.slug
     
+    def toJSON(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'slug': self.slug
+        }
+    
 
 class Product(models.Model):
 

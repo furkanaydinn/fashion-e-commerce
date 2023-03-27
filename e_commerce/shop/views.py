@@ -35,7 +35,8 @@ class Shop(APIView):
         page_obj = paginator.get_page(page_number)
 
         serialized_products = ProductSerializer(page_obj.object_list, many=True).data
-        serialized_categories = CategorySerializer(categories, many=True).data
+        serialized_categories = [category.toJSON() for category in categories]
+        #serialized_categories = CategorySerializer(categories, many=True).data
 
         total_count = paginator.count
         page_start_index = (page_number - 1) * paginator.per_page + 1
