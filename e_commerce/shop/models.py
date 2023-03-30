@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Avg, Count
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -24,8 +25,11 @@ class Category(models.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'slug': self.slug
+            'slug': self.slug,
+            'created_at': timezone.localtime(self.created_at).strftime('%Y-%m-%d %H:%M:%S'),
+            'updated_at': timezone.localtime(self.updated_at).strftime('%Y-%m-%d %H:%M:%S')
         }
+
     
 
 class Product(models.Model):
@@ -33,7 +37,7 @@ class Product(models.Model):
     STATUS_CHOICES = (
         ('Draft', 'Draft'),
         ('Waiting approval', 'Waiting approval'),
-        ('Active', 'Active'),
+        ('ACTIVE', 'ACTIVE'),
         ('Deleted', 'Deleted'),
     )
 
